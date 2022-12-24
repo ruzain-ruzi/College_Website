@@ -1,0 +1,65 @@
+{% extends 'Admin/index_admin.html' %}
+{% block admin %}
+
+    <header class="header_inner courses_page">
+        <div class="intro_wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-8 col-lg-8">
+                        <div class="intro_text">
+                            <h1>Staff Leave Report</h1>
+                            <div class="pages_links">
+                                <a href="/admin_home" title="">Home</a>
+                                <a href="#" title="" class="active">View Staff Leave Report</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="popular_courses" id="popular_courses_page">
+        <div class="container">
+            <div class="row">
+                {% for leaves in leave %}
+                    {% if leaves.status == 'pending' %}
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+                            <div class="single-courses">
+                                <div class="courses_banner_wrapper">
+                                    <div class="purchase_price">
+                                        <a href="#" class="read_more-btn">{{ forloop.counter }}</a>
+                                    </div>
+                                </div>
+                                <div class="courses_info_wrapper">
+                                    <div class="courses_title">
+                                        <h3>{{ leaves.subject_id.staff_id.staff_name }}</h3>
+                                        <div class="teachers_name">
+                                            {{ leaves.subject_id.subject_name }}
+                                            ({{ leaves.subject_id.course_id.course_name }})
+                                        </div>
+                                    </div>
+                                    <div class="courses_info">
+                                        <ul class="list-unstyled">
+                                            <li><h6><i class="fas fa-envelope"></i>
+                                                {{ leaves.reason }}</h6>
+                                            </li>
+                                            <li><i class="fa-regular fa-calendar-days"></i>{{ leaves.date }}</li>
+                                        </ul>
+                                        <div>
+                                            <a class="cart_btn" href="/approve_staff_leave/{{ leaves.id }}">Approve</a>
+                                            <br><br>
+                                            <a class="cart_btn bg-danger"
+                                               href="/reject_staff_leave/{{ leaves.id }}">Reject</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

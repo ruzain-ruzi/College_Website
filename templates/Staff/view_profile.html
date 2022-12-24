@@ -1,0 +1,67 @@
+{% extends 'Staff/index_staff.html' %}
+{% block staff %}
+
+    <header class="header_inner become_a_teacher">
+        <div class="intro_wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-8 col-lg-8">
+                        <div class="intro_text">
+                            <h1>My Profile</h1>
+                            <div class="pages_links">
+                                <a href="/staff_home" title="">Home</a>
+                                <a href="#" title="" class="active">View Profile</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="teachers_profile">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 teacher-detail-left">
+                    <div class="teacher_info_wrapper">
+                        <div class="teacger-image">
+                            <img src="{{ staff.photo }}" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                </div><!-- Ends: .teacher-detail-left -->
+                <div class="col-sm-8 teacher-detail-right">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="teacher-info">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <h3>Name :</h3>
+                                        <span>{{ staff.staff_name }}</span>
+                                    </li>
+                                    <li>
+                                        <h3>Gender :</h3>
+                                        <span>{{ staff.gender }}</span>
+                                    </li>
+                                    <li>
+                                        <h3>Email :</h3>
+                                        <span>{{ staff.email }}</span>
+                                    </li>
+                                    <li>
+                                        <h3>Phone Number :</h3>
+                                        <span>{{ staff.phone_number }}</span>
+                                    </li>
+                                </ul>
+                                    <div class="teacher-contact">
+                                        <form action="/update_profile">
+                                            <button type="submit">Edit Profile</button>
+                                        </form>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}

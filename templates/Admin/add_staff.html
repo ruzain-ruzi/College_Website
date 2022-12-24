@@ -1,0 +1,81 @@
+{% extends 'Admin/index_admin.html' %}
+{% block admin %}
+
+    <header class="header_inner become_a_teacher">
+        <div class="intro_wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-8 col-lg-8">
+                        <div class="intro_text">
+                            <h1>Add Staff</h1>
+                            <div class="pages_links">
+                                <a href="/admin_home" title="">Home</a>
+                                <a href="#" title="" class="active">Add Staff</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="become_a_instructor">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-sm-10 col-md-4 col-lg-4 w-75">
+                    <div class="apply_instructor">
+                        <div class="form_title">
+                            <h3>Enter Staff Details</h3>
+                        </div>
+                        <form action="" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-12 col-lg-12 col-md-12 col-lg-12">
+                                    <div class="form-group">
+                                        <label for="name" class="control-label">Name</label>
+                                        <input id="name" type="text" name="staff_name" class="form-control"
+                                               placeholder="John Doe">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-12 col-md-12 col-lg-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Photo</label>
+                                        <input type="file" name="photo" id="photo" class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-12 col-md-12 col-lg-12">
+                                    <div>
+                                        <label class="control-label">Gender</label>
+                                        <br>
+                                        <input type="radio" name="gender" value="Male" id="male"/>
+                                        <label for="male">Male</label>
+                                        &nbsp;
+                                        <input type="radio" name="gender" value="Female" id="female"/>
+                                        <label for="female">Female</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-12 col-md-12 col-lg-12">
+                                    <div class="form-group">
+                                        <label for="email" class="control-label">Email</label>
+                                        <input id="email" type="email" name="email" class="form-control"
+                                               placeholder="staff@email.com">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-12 col-md-12 col-lg-12">
+                                    <div class="form-group">
+                                        <label for="phone" class="control-label">Phone</label>
+                                        <input id="phone" type="text" name="phone_number" class="form-control"
+                                               placeholder="Enter 10 Digit Phone Number">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-12 col-md-12 col-lg-12">
+                                    <button type="submit" class="btn btn-default submit_btn">Add</button>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

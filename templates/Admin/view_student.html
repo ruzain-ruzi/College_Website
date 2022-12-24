@@ -1,0 +1,62 @@
+{% extends 'Admin/index_admin.html' %}
+{% block admin %}
+
+    <header class="header_inner courses_page">
+        <div class="intro_wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-8 col-lg-8">
+                        <div class="intro_text">
+                            <h1>Students</h1>
+                            <div class="pages_links">
+                                <a href="/admin_home" title="">Home</a>
+                                <a href="#" title="" class="active">View Student</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="popular_courses" id="popular_courses_page">
+        <div class="container">
+            <div class="row">
+                {% for students in student %}
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+                        <div class="single-courses">
+                            <div class="courses_banner_wrapper">
+                                <div class="courses_banner"><a href="#"><img src="{{ students.photo }}"
+                                                                             alt="Staff Photo"
+                                                                             class="img-fluid"></a></div>
+                                <div class="purchase_price">
+                                    <a href="#" class="read_more-btn">{{ forloop.counter }}</a>
+                                </div>
+                            </div>
+                            <div class="courses_info_wrapper">
+                                <div class="courses_title">
+                                    <h3>{{ students.student_name }}</h3>
+                                    <div class="teachers_name">{{ students.course_id.course_name }}</div>
+                                    <div class="pt-0 teachers_name">{{ students.batch }}</div>
+                                </div>
+                                <div class="courses_info">
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-user"></i>{{ students.gender }}</li>
+                                        <li><i class="fas fa-envelope"></i>{{ students.email }}</li>
+                                        <li><i class="fas fa-phone"></i>{{ students.phone_number }}</li>
+                                    </ul>
+                                    <div>
+                                        <a class="cart_btn" href="/update_student/{{ students.id }}">Edit</a>
+                                        <a class="cart_btn bg-danger"
+                                           href="/remove_student/{{ students.id }}">Remove</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- Ends: .single courses -->
+                    </div><!-- Ends: . -->
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

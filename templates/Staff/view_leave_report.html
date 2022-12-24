@@ -1,0 +1,56 @@
+{% extends 'Staff/index_staff.html' %}
+{% block staff %}
+
+
+    <header class="header_inner courses_page">
+        <div class="intro_wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-8 col-lg-8">
+                        <div class="intro_text">
+                            <h1>Leave Report</h1>
+                            <div class="pages_links">
+                                <a href="/staff_home" title="">Home</a>
+                                <a href="#" title="" class="active">Leave Report</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="main-content">
+        <div class="container">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Reason</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for leaves in leave %}
+                    <tr>
+                        <td>{{ leaves.subject_id.subject_name }}</td>
+                        <td>{{ leaves.reason }}</td>
+                        <td>{{ leaves.date }}</td>
+                        <td>
+                            {% if leaves.status == 'pending' %}
+                                <span class="active-circle bg-warning"></span> {{ leaves.status }}
+                            {% elif leaves.status == 'approved' %}
+                                <span class="active-circle bg-success"></span> {{ leaves.status }}
+                            {% elif leaves.status == 'rejected' %}
+                                <span class="active-circle bg-danger"></span> {{ leaves.status }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+{% endblock %}

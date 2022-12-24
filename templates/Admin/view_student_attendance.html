@@ -1,0 +1,70 @@
+{% extends 'Admin/index_admin.html' %}
+{% block admin %}
+
+    <header class="header_inner courses_page">
+        <div class="intro_wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-8 col-lg-8">
+                        <div class="intro_text">
+                            <h1>Student Attendance</h1>
+                            <div class="pages_links">
+                                <a href="/admin_home" title="">Home</a>
+                                <a href="#" title="" class="active">Student Attendance</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="main-content">
+        <div class="container">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Student</th>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Course</th>
+                    <th scope="col">Staff</th>
+                    <th scope="col">Batch</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for attendances in attendance %}
+                    <tr>
+                        <td>
+                            <div class="user-info">
+                                <div class="user-info__img">
+                                    <img src="{{ attendances.student_id.photo }}" alt="User Img">
+                                </div>
+                                <div class="user-info__basic">
+                                    <h5 class="mb-0">{{ attendances.student_id.student_name }}</h5>
+                                    <p class="text-muted mb-0">{{ attendances.student_id.email }}</p>
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>{{ attendances.subject_attendance_id.subject_id.subject_name }}</td>
+                        <td>{{ attendances.subject_attendance_id.subject_id.course_id.course_name }}</td>
+                        <td>{{ attendances.subject_attendance_id.subject_id.staff_id.staff_name }}</td>
+                        <td>{{ attendances.subject_attendance_id.batch }}</td>
+                        <td>{{ attendances.subject_attendance_id.attendance_date }}</td>
+                        <td>
+                            {% if attendances.attendance_status == 'present' %}
+                                <span class="active-circle bg-success"></span> {{ attendances.attendance_status }}
+                            {% elif attendances.attendance_status == 'absent' %}
+                                <span class="active-circle bg-danger"></span> {{ attendances.attendance_status }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'Admin/index_admin.html' %}
+{% block admin %}
+
+    <header class="header_inner courses_page">
+        <div class="intro_wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-8 col-lg-8">
+                        <div class="intro_text">
+                            <h1>Subjects</h1>
+                            <div class="pages_links">
+                                <a href="/admin_home" title="">Home</a>
+                                <a href="#" title="" class="active">View Subject</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="popular_courses" id="popular_courses_page">
+        <div class="container">
+            <div class="row">
+                {% for subjects in subject %}
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+                        <div class="single-courses">
+                            <div class="courses_banner_wrapper">
+                                <div class="purchase_price">
+                                    <a href="#" class="read_more-btn">{{ forloop.counter }}</a>
+                                </div>
+                            </div>
+                            <div class="courses_info_wrapper">
+                                <div class="courses_title">
+                                    <h3>{{ subjects.subject_name }}</h3>
+                                    <div class="teachers_name">{{ subjects.course_id.course_name }}</div>
+                                </div>
+                                <div class="courses_info">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            {% if subjects.semester == 1 %}
+                                                {{ subjects.semester }}<sup>st</sup>
+                                            {% elif subjects.semester == 2 %}
+                                                {{ subjects.semester }}<sup>nd</sup>
+                                            {% elif subjects.semester == 3 %}
+                                                {{ subjects.semester }}<sup>rd</sup>
+                                            {% elif subjects.semester > 3 %}
+                                                {{ subjects.semester }}<sup>th</sup>
+                                            {% endif %}
+                                            Semester
+                                        </li>
+                                        <li>
+                                            <i class="fa-solid fa-person-chalkboard"></i>{{ subjects.staff_id.staff_name }}
+                                        </li>
+                                    </ul>
+                                    <div>
+                                        <a class="cart_btn" href="/update_subject/{{ subjects.id }}">Edit</a>
+                                        <a class="cart_btn bg-danger"
+                                           href="/remove_subject/{{ subjects.id }}">Remove</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- Ends: .single courses -->
+                    </div><!-- Ends: . -->
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

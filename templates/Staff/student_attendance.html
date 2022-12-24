@@ -1,0 +1,89 @@
+{% extends 'Staff/index_staff.html' %}
+{% block staff %}
+
+    <header class="header_inner courses_page">
+        <div class="intro_wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-8 col-lg-8">
+                        <div class="intro_text">
+                            <h1>Student Attendance</h1>
+                            <div class="pages_links">
+                                <a href="/staff_home" title="">Home</a>
+                                <a href="#" title="" class="active">Student Attendance</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="main-content">
+        <div class="container">
+            <div class="filters p-3 page-header d-flex flex-row">
+                <div class="dropdown open">
+                    <a class="btn btn-white dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown"
+                       aria-haspopup="true"
+                       aria-expanded="false">
+                        Subject<span class="m-1 fa-solid fa-angle-down" style="color: #667085;float: right;"></span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="triggerId">
+                        {% for subjects in subject %}
+                            <a class="dropdown-item" href="/take_student_attendance?sfilter={{ subjects.subject_name }}">{{ subjects.subject_name }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="dropdown open">
+                    <a class="btn btn-white dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown"
+                       aria-haspopup="true"
+                       aria-expanded="false">
+                        Batch<span class="m-1 fa-solid fa-angle-down" style="color: #667085;float: right;"></span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="triggerId">
+                        {% for students in stud %}
+                            <a class="dropdown-item" href="take_student_attendance?bfilter={{ students.batch }}">{{ students.batch }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Student</th>
+                    <th scope="col">Course</th>
+                    <th scope="col">Batch</th>
+                    <th scope="col">Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for students in student %}
+                    <tr>
+                        <td>
+                            <div class="user-info">
+                                <div class="user-info__img">
+                                    <img src="{{ students.photo }}" alt="User Img">
+                                </div>
+                                <div class="user-info__basic">
+                                    <h5 class="mb-0">{{ students.student_name }}</h5>
+                                    <p class="text-muted mb-0">{{ students.email }}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{ students.course_id.course_name }}</td>
+                        <td>{{ students.batch }}</td>
+                        <td>
+                            <a class="text-success text-decoration-none" href="/student_present/{{ students.id }}"
+                               title="present">PRESENT</a>
+                            &nbsp;
+                            <a class="text-danger text-decoration-none" href="/student_absent/{{ students.id }}"
+                               title="absent">ABSENT</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'Student/index_student.html' %}
+{% block student %}
+
+    <header class="header_inner become_a_teacher">
+        <div class="intro_wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-8 col-lg-8">
+                        <div class="intro_text">
+                            <h1>My Profile</h1>
+                            <div class="pages_links">
+                                <a href="/student_home" title="">Home</a>
+                                <a href="#" title="" class="active">View Profile</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="teachers_profile">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 teacher-detail-left">
+                    <div class="teacher_info_wrapper">
+                        <div class="teacger-image">
+                            <img src="{{ student.photo }}" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                </div><!-- Ends: .teacher-detail-left -->
+                <div class="col-sm-8 teacher-detail-right">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="teacher-info">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <h3>Name :</h3>
+                                        <span>{{ student.student_name }}</span>
+                                    </li>
+                                    <li>
+                                        <h3>Gender :</h3>
+                                        <span>{{ student.gender }}</span>
+                                    </li>
+                                    <li>
+                                        <h3>Email :</h3>
+                                        <span>{{ student.email }}</span>
+                                    </li>
+                                    <li>
+                                        <h3>Phone Number :</h3>
+                                        <span>{{ student.phone_number }}</span>
+                                    </li>
+                                </ul>
+                                    <div class="teacher-contact">
+                                        <form action="/student_update_profile">
+                                            <button type="submit">Edit Profile</button>
+                                        </form>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

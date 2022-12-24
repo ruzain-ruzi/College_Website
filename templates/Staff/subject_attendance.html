@@ -1,0 +1,61 @@
+{% extends 'Staff/index_staff.html' %}
+{% block staff %}
+
+    <header class="header_inner courses_page">
+        <div class="intro_wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-8 col-lg-8">
+                        <div class="intro_text">
+                            <h1>Subject Attendance</h1>
+                            <div class="pages_links">
+                                <a href="/staff_home" title="">Home</a>
+                                <a href="#" title="" class="active">Subject Attendance</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="main-content">
+        <div class="container">
+            <div class="filters p-3 page-header d-flex flex-row">
+                <div class="dropdown open">
+                    <a class="btn btn-white dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown"
+                       aria-haspopup="true"
+                       aria-expanded="false">
+                        Subject<span class="m-1 fa-solid fa-angle-down" style="color: #667085;float: right;"></span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="triggerId">
+                        {% for subjects in subj %}
+                            <a class="dropdown-item"
+                               href="/mark_subject_attendance?sfilter={{ subjects.subject_name }}">{{ subjects.subject_name }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for subjects in subject %}
+                    <tr>
+                        <td>{{ subjects.subject_name }}</td>
+                        <td>
+                            <a class="text-success text-decoration-none" href="/mark_attendance/{{ subjects.id }}"
+                               title="present">MARK</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+{% endblock %}

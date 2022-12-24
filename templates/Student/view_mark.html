@@ -1,0 +1,51 @@
+{% extends 'Student/index_student.html' %}
+{% block student %}
+
+    <header class="header_inner courses_page">
+        <div class="intro_wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-8 col-lg-8">
+                        <div class="intro_text">
+                            <h1>Mark</h1>
+                            <div class="pages_links">
+                                <a href="/student_home" title="">Home</a>
+                                <a href="#" title="" class="active">View Mark</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="main-content">
+        <div class="container">
+            <form action="" method="get">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Subject</th>
+                        <th scope="col">Semester</th>
+                        <th scope="col">Teacher</th>
+                        <th scope="col">Assignment Mark</th>
+                        <th scope="col">Exam Mark</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for marks in mark %}
+                        <tr>
+                            <td>{{ marks.subject_id.subject_name }}</td>
+                            <td>{{ marks.subject_id.semester }}</td>
+                            <td>{{ marks.subject_id.staff_id.staff_name }}</td>
+                            <td>{{ marks.assignment_marks }}</td>
+                            <td>{{ marks.exam_marks }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </section>
+
+{% endblock %}

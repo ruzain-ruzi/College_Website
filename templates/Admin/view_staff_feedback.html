@@ -1,0 +1,33 @@
+{% extends 'Admin/index_admin.html' %}
+{% block admin %}
+
+    <section class="faq_about bg-secondary bg-gradient">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="sub_title">
+                        <h2>Staff Feedbacks</h2>
+                        {#                    <p></p>#}
+                    </div><!-- ends: .section-header -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="faq_wrapper">
+                        {% for feedbacks in feedback %}
+                            <div class="single_faq">
+                                <h3><span>{{ forloop.counter }}</span>{{ feedbacks.staff_id.staff_name }}
+                                    <br>
+                                </h3>
+                                <h4><q>{{ feedbacks.feedback }}</q>
+                                </h4>
+                                <i>{{ feedbacks.date }}</i>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'Staff/index_staff.html' %}
+{% block staff %}
+
+    <header class="header_inner courses_page">
+        <div class="intro_wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-8 col-lg-8">
+                        <div class="intro_text">
+                            <h1>Student Mark</h1>
+                            <div class="pages_links">
+                                <a href="/staff_home" title="">Home</a>
+                                <a href="#" title="" class="active">Add Student Mark</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="main-content">
+        <div class="container">
+            <form action="">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Student</th>
+                        <th scope="col">Assignment Mark</th>
+                        <th scope="col">Exam Mark</th>
+                        <th scope="col">&nbsp;</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for marks in mark %}
+                        <tr>
+                            <td>
+                                <div class="user-info">
+                                    <div class="user-info__img">
+                                        <img src="{{ marks.student_id.photo }}" alt="User Img">
+                                    </div>
+                                    <div class="user-info__basic">
+                                        <h5 class="mb-0">{{ marks.student_id.student_name }}</h5>
+                                        <p class="text-muted mb-0">{{ marks.student_id.email }}</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>{{ marks.assignment_marks }}</td>
+                            <td>{{ marks.exam_marks }}</td>
+                            <td><a class="btn btn-primary text-decoration-none" href="/update_mark">EDIT</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </section>
+
+{% endblock %}
